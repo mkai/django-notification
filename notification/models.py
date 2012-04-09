@@ -129,6 +129,8 @@ def get_notification_language(user):
     LanguageStoreNotAvailable if this site does not use translated
     notifications.
     """
+    if hasattr(user, 'language'):
+        return user.language
     if getattr(settings, "NOTIFICATION_LANGUAGE_MODULE", False):
         try:
             app_label, model_name = settings.NOTIFICATION_LANGUAGE_MODULE.split(".")
